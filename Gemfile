@@ -45,3 +45,10 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
+
+gem "devise"
+gem "devise-jwt"
+gem "cancancan"
+gem "jb"
+gem "rspec-rails"
+gem "factory_bot_rails"
