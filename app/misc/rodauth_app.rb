@@ -7,6 +7,14 @@ class RodauthApp < Rodauth::Rails::App
 
   # secondary configuration
   # configure RodauthAdmin, :admin
-
-  route(&:rodauth)
+  plugin :rodauth do
+    prefix '/api/v1'
+  end
+  route do |r|
+    r.on 'api' do
+      r.on 'v1' do
+        r.rodauth
+      end
+    end
+  end
 end
