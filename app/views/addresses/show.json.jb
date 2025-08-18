@@ -1,0 +1,11 @@
+{
+  id: @address.id,
+  account_id: @address.account_id,
+  other_details: @address.other_details,
+  street: @address.street,
+  city: @address.city,
+  state: @address.state,
+  is_default: @address.is_default,
+  created_at: @address.created_at,
+  updated_at: @address.updated_at
+}
