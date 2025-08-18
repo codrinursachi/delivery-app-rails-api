@@ -8,7 +8,7 @@ module Api
 
       # GET /api/v1/menu_items
       def index
-        @api_v1_menu_items = Api::V1::MenuItem.all
+        @api_v1_menu_items = MenuItem.all
 
         render json: @api_v1_menu_items
       end
@@ -20,7 +20,7 @@ module Api
 
       # POST /api/v1/menu_items
       def create
-        @api_v1_menu_item = Api::V1::MenuItem.new(api_v1_menu_item_params)
+        @api_v1_menu_item = MenuItem.new(api_v1_menu_item_params)
 
         if @api_v1_menu_item.save
           render json: @api_v1_menu_item, status: :created, location: @api_v1_menu_item
@@ -47,7 +47,7 @@ module Api
 
       # Use callbacks to share common setup or constraints between actions.
       def set_api_v1_menu_item
-        @api_v1_menu_item = Api::V1::MenuItem.find(params.expect(:id))
+        @api_v1_menu_item = MenuItem.find(params.expect(:id))
       end
 
       # Only allow a list of trusted parameters through.

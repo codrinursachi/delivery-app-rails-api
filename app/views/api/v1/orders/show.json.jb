@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+{
+  id: @api_v1_order.id,
+  account_id: @api_v1_order.account_id,
+  restaurant_id: @api_v1_order.restaurant_id,
+  address_id: @api_v1_order.address_id,
+  status: @api_v1_order.status,
+  delivery_time: @api_v1_order.delivery_time,
+  total_price: @api_v1_order.total_price,
+  payment_method: @api_v1_order.payment_method,
+  payment_status: @api_v1_order.payment_status,
+  created_at: @api_v1_order.created_at,
+  updated_at: @api_v1_order.updated_at
+}

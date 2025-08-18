@@ -1,4 +1,6 @@
-@restaurants.map do |_restaurant|
+# frozen_string_literal: true
+
+@restaurants.map do |restaurant|
   {
     id: restaurant.id,
     account_id: restaurant.account_id,
@@ -10,6 +12,6 @@
     closing_time: restaurant.closing_time,
     status: restaurant.status,
     average_rating: restaurant.average_rating,
-    url: restaurant_url(_restaurant, format: :json)
+    url: restaurant_url(restaurant, format: :json)
   }
 end

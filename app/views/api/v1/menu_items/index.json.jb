@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 @api_v1_menu_items.map do |api_v1_menu_item|
   {
     id: api_v1_menu_item.id,

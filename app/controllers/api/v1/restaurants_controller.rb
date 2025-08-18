@@ -8,7 +8,7 @@ module Api
 
       # GET /api/v1/restaurants
       def index
-        @restaurants = Api::V1::Restaurant.all
+        @restaurants = Restaurant.all
 
         render json: @restaurants
       end
@@ -20,7 +20,7 @@ module Api
 
       # POST /api/v1/restaurants
       def create
-        @restaurant = Api::V1::Restaurant.new(api_v1_restaurant_params)
+        @restaurant = Restaurant.new(api_v1_restaurant_params)
 
         if @restaurant.save
           render json: @restaurant, status: :created, location: @restaurant
@@ -47,7 +47,7 @@ module Api
 
       # Use callbacks to share common setup or constraints between actions.
       def set_restaurant
-        @restaurant = Api::V1::Restaurant.find(params.expect(:id))
+        @restaurant = Restaurant.find(params.expect(:id))
       end
 
       # Only allow a list of trusted parameters through.

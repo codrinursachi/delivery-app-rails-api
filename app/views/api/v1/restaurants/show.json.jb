@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 {
   id: @restaurant.id,
   account_id: @restaurant.account_id,

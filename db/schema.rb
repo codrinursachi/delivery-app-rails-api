@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_18_172052) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_18_174220) do
   create_table "account_jwt_refresh_keys", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "key", null: false
@@ -69,6 +69,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_172052) do
     t.index ["restaurant_id"], name: "index_menu_items_on_restaurant_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "restaurant_id", null: false
+    t.integer "address_id", null: false
+    t.string "status"
+    t.datetime "delivery_time"
+    t.decimal "total_price"
+    t.string "payment_method"
+    t.string "payment_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_orders_on_account_id"
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
+  end
+
   create_table "restaurant_addresses", force: :cascade do |t|
     t.integer "restaurant_id", null: false
     t.string "other_details"
@@ -101,6 +117,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_172052) do
   add_foreign_key "account_verification_keys", "accounts", column: "id"
   add_foreign_key "addresses", "accounts"
   add_foreign_key "menu_items", "restaurants"
+  add_foreign_key "orders", "accounts"
+  add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "restaurants"
   add_foreign_key "restaurant_addresses", "restaurants"
   add_foreign_key "restaurants", "accounts"
 end

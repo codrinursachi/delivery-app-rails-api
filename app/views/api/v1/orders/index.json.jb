@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+@api_v1_orders.map do |api_v1_order|
+  {
+    id: api_v1_order.id,
+    account_id: api_v1_order.account_id,
+    restaurant_id: api_v1_order.restaurant_id,
+    address_id: api_v1_order.address_id,
+    status: api_v1_order.status,
+    delivery_time: api_v1_order.delivery_time,
+    total_price: api_v1_order.total_price,
+    payment_method: api_v1_order.payment_method,
+    payment_status: api_v1_order.payment_status,
+    url: api_v1_order_url(api_v1_order, format: :json)
+  }
+end

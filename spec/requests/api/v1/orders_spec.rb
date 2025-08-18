@@ -14,9 +14,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/api/v1/menu_items' do
+RSpec.describe '/api/v1/orders' do
   # This should return the minimal set of attributes required to create a valid
-  # Api::V1::MenuItem. As you add validations to Api::V1::MenuItem, be sure to
+  # Order. As you add validations to Order, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
     skip('Add a hash of attributes valid for your model')
@@ -28,7 +28,7 @@ RSpec.describe '/api/v1/menu_items' do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # Api::V1::MenuItemsController, or in your router and rack
+  # OrdersController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) do
     {}
@@ -36,48 +36,48 @@ RSpec.describe '/api/v1/menu_items' do
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      MenuItem.create! valid_attributes
-      get '/api/v1/menu_item', headers: valid_headers, as: :json
+      Order.create! valid_attributes
+      get '/api/v1/orders', headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      menu_item = MenuItem.create! valid_attributes
-      get api_v1_menu_item_url(menu_item), as: :json
+      order = Order.create! valid_attributes
+      get api_v1_order_url(order), as: :json
       expect(response).to be_successful
     end
   end
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new Api::V1::MenuItem' do
+      it 'creates a new Order' do
         expect do
-          post '/api/v1/menu_item',
-               params: { api_v1_menu_item: valid_attributes }, headers: valid_headers, as: :json
-        end.to change(MenuItem, :count).by(1)
+          post '/api/v1/orders',
+               params: { api_v1_order: valid_attributes }, headers: valid_headers, as: :json
+        end.to change(Order, :count).by(1)
       end
 
-      it 'renders a JSON response with the new api_v1_menu_item' do
-        post '/api/v1/menu_item',
-             params: { api_v1_menu_item: valid_attributes }, headers: valid_headers, as: :json
+      it 'renders a JSON response with the new api_v1_order' do
+        post '/api/v1/orders',
+             params: { api_v1_order: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Api::V1::MenuItem' do
+      it 'does not create a new Order' do
         expect do
-          post '/api/v1/menu_item',
-               params: { api_v1_menu_item: invalid_attributes }, as: :json
-        end.not_to change(MenuItem, :count)
+          post '/api/v1/orders',
+               params: { api_v1_order: invalid_attributes }, as: :json
+        end.not_to change(Order, :count)
       end
 
-      it 'renders a JSON response with errors for the new api_v1_menu_item' do
-        post '/api/v1/menu_item',
-             params: { api_v1_menu_item: invalid_attributes }, headers: valid_headers, as: :json
+      it 'renders a JSON response with errors for the new api_v1_order' do
+        post '/api/v1/orders',
+             params: { api_v1_order: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
@@ -90,28 +90,28 @@ RSpec.describe '/api/v1/menu_items' do
         skip('Add a hash of attributes valid for your model')
       end
 
-      it 'updates the requested api_v1_menu_item' do
-        menu_item = MenuItem.create! valid_attributes
-        patch api_v1_menu_item_url(menu_item),
-              params: { api_v1_menu_item: new_attributes }, headers: valid_headers, as: :json
-        menu_item.reload
+      it 'updates the requested api_v1_order' do
+        order = Order.create! valid_attributes
+        patch api_v1_order_url(order),
+              params: { api_v1_order: new_attributes }, headers: valid_headers, as: :json
+        order.reload
         skip('Add assertions for updated state')
       end
 
-      it 'renders a JSON response with the api_v1_menu_item' do
-        menu_item = MenuItem.create! valid_attributes
-        patch api_v1_menu_item_url(menu_item),
-              params: { api_v1_menu_item: new_attributes }, headers: valid_headers, as: :json
+      it 'renders a JSON response with the api_v1_order' do
+        order = Order.create! valid_attributes
+        patch api_v1_order_url(order),
+              params: { api_v1_order: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
     context 'with invalid parameters' do
-      it 'renders a JSON response with errors for the api_v1_menu_item' do
-        menu_item = MenuItem.create! valid_attributes
-        patch api_v1_menu_item_url(menu_item),
-              params: { api_v1_menu_item: invalid_attributes }, headers: valid_headers, as: :json
+      it 'renders a JSON response with errors for the api_v1_order' do
+        order = Order.create! valid_attributes
+        patch api_v1_order_url(order),
+              params: { api_v1_order: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
@@ -119,11 +119,11 @@ RSpec.describe '/api/v1/menu_items' do
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested api_v1_menu_item' do
-      menu_item = MenuItem.create! valid_attributes
+    it 'destroys the requested api_v1_order' do
+      order = Order.create! valid_attributes
       expect do
-        delete api_v1_menu_item_url(menu_item), headers: valid_headers, as: :json
-      end.to change(MenuItem, :count).by(-1)
+        delete api_v1_order_url(order), headers: valid_headers, as: :json
+      end.to change(Order, :count).by(-1)
     end
   end
 end
