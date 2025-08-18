@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_18_150729) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_18_154004) do
   create_table "account_jwt_refresh_keys", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "key", null: false
@@ -57,9 +57,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_150729) do
     t.index ["account_id"], name: "index_addresses_on_account_id"
   end
 
+  create_table "restaurants", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.string "name"
+    t.text "description"
+    t.string "phone"
+    t.string "email"
+    t.time "opening_time"
+    t.time "closing_time"
+    t.string "status"
+    t.float "average_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_restaurants_on_account_id"
+  end
+
   add_foreign_key "account_jwt_refresh_keys", "accounts"
   add_foreign_key "account_login_change_keys", "accounts", column: "id"
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
   add_foreign_key "addresses", "accounts"
+  add_foreign_key "restaurants", "accounts"
 end

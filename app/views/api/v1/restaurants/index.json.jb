@@ -1,0 +1,15 @@
+@restaurants.map do |_restaurant|
+  {
+    id: restaurant.id,
+    account_id: restaurant.account_id,
+    name: restaurant.name,
+    description: restaurant.description,
+    phone: restaurant.phone,
+    email: restaurant.email,
+    opening_time: restaurant.opening_time,
+    closing_time: restaurant.closing_time,
+    status: restaurant.status,
+    average_rating: restaurant.average_rating,
+    url: restaurant_url(_restaurant, format: :json)
+  }
+end
