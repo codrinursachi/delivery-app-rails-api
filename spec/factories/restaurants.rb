@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :api_v1_restaurant, class: 'Api::V1::Restaurant' do
+  factory :restaurant, class: 'Api::V1::Restaurant' do
     account { nil }
     name { 'MyString' }
     description { 'MyText' }

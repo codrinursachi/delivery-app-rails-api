@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Migration to create user addresses table
 class CreateAddresses < ActiveRecord::Migration[8.0]
   def change
