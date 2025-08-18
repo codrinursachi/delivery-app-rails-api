@@ -1,0 +1,11 @@
+{
+  id: @api_v1_menu_item.id,
+  restaurant_id: @api_v1_menu_item.restaurant_id,
+  category: @api_v1_menu_item.category,
+  name: @api_v1_menu_item.name,
+  description: @api_v1_menu_item.description,
+  price: @api_v1_menu_item.price,
+  is_available: @api_v1_menu_item.is_available,
+  created_at: @api_v1_menu_item.created_at,
+  updated_at: @api_v1_menu_item.updated_at
+}

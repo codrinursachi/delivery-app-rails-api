@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_18_154004) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_18_172052) do
   create_table "account_jwt_refresh_keys", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "key", null: false
@@ -57,6 +57,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_154004) do
     t.index ["account_id"], name: "index_addresses_on_account_id"
   end
 
+  create_table "menu_items", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.string "category"
+    t.string "name"
+    t.text "description"
+    t.decimal "price"
+    t.boolean "is_available", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_menu_items_on_restaurant_id"
+  end
+
+  create_table "restaurant_addresses", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.string "other_details"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_restaurant_addresses_on_restaurant_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "name"
@@ -77,5 +100,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_154004) do
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
   add_foreign_key "addresses", "accounts"
+  add_foreign_key "menu_items", "restaurants"
+  add_foreign_key "restaurant_addresses", "restaurants"
   add_foreign_key "restaurants", "accounts"
 end
