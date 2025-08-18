@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_17_160718) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_18_144722) do
   create_table "account_jwt_refresh_keys", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "key", null: false
@@ -40,6 +40,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_17_160718) do
     t.integer "status", default: 1, null: false
     t.string "email", null: false
     t.string "password_hash"
+    t.string "phone"
+    t.string "role"
     t.index ["email"], name: "index_accounts_on_email", unique: true, where: "status IN (1, 2)"
   end
 
