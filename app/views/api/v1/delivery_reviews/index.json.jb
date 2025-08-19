@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+@api_v1_delivery_reviews.map do |api_v1_delivery_review|
+  {
+    id: api_v1_delivery_review.id,
+    user_id: api_v1_delivery_review.user_id,
+    delivery_person_id: api_v1_delivery_review.delivery_person_id,
+    order_id: api_v1_delivery_review.order_id,
+    rating: api_v1_delivery_review.rating,
+    comment: api_v1_delivery_review.comment,
+    url: api_v1_delivery_review_url(api_v1_delivery_review, format: :json)
+  }
+end

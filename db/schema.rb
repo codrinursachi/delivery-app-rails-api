@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_19_072306) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_19_073459) do
   create_table "account_jwt_refresh_keys", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "key", null: false
@@ -78,6 +78,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_072306) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_delivery_people_on_account_id"
+  end
+
+  create_table "delivery_reviews", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "delivery_person_id", null: false
+    t.integer "order_id", null: false
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_delivery_reviews_on_account_id"
+    t.index ["delivery_person_id"], name: "index_delivery_reviews_on_delivery_person_id"
+    t.index ["order_id"], name: "index_delivery_reviews_on_order_id"
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -167,6 +180,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_072306) do
   add_foreign_key "deliveries", "delivery_people"
   add_foreign_key "deliveries", "orders"
   add_foreign_key "delivery_people", "accounts"
+  add_foreign_key "delivery_reviews", "accounts"
+  add_foreign_key "delivery_reviews", "delivery_people"
+  add_foreign_key "delivery_reviews", "orders"
   add_foreign_key "menu_items", "restaurants"
   add_foreign_key "order_items", "menu_items"
   add_foreign_key "order_items", "orders"
