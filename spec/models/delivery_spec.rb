@@ -2,6 +2,6 @@
 
 require 'rails_helper'
 
-RSpec.describe OrderItem, type: :model do # rubocop:disable RSpecRails/InferredSpecType
+RSpec.describe Delivery, type: :model do # rubocop:disable RSpecRails/InferredSpecType
   pending "add some examples to (or delete) #{__FILE__}"
 end

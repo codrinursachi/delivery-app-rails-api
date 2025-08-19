@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+{
+  id: @api_v1_delivery.id,
+  order_id: @api_v1_delivery.order_id,
+  delivery_person_id: @api_v1_delivery.delivery_person_id,
+  status: @api_v1_delivery.status,
+  pickup_time: @api_v1_delivery.pickup_time,
+  delivery_time: @api_v1_delivery.delivery_time,
+  created_at: @api_v1_delivery.created_at,
+  updated_at: @api_v1_delivery.updated_at
+}

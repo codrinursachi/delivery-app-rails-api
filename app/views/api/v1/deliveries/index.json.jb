@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+@api_v1_deliveries.map do |api_v1_delivery|
+  {
+    id: api_v1_delivery.id,
+    order_id: api_v1_delivery.order_id,
+    delivery_person_id: api_v1_delivery.delivery_person_id,
+    status: api_v1_delivery.status,
+    pickup_time: api_v1_delivery.pickup_time,
+    delivery_time: api_v1_delivery.delivery_time,
+    url: api_v1_delivery_url(api_v1_delivery, format: :json)
+  }
+end

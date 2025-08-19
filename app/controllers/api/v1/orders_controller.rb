@@ -52,8 +52,8 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def api_v1_order_params
-        params.expect(api_v1_order: %i[account_id restaurant_id address_id status delivery_time total_price
-                                       payment_method payment_status])
+        params.expect(order: %i[account_id restaurant_id address_id status delivery_time total_price
+                                payment_method payment_status])
       end
     end
   end

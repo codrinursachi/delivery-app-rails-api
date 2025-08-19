@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_18_174220) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_19_070546) do
   create_table "account_jwt_refresh_keys", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "key", null: false
@@ -57,6 +57,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_174220) do
     t.index ["account_id"], name: "index_addresses_on_account_id"
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "delivery_person_id", null: false
+    t.string "status"
+    t.datetime "pickup_time"
+    t.datetime "delivery_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["delivery_person_id"], name: "index_deliveries_on_delivery_person_id"
+    t.index ["order_id"], name: "index_deliveries_on_order_id"
+  end
+
+  create_table "delivery_people", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.string "license_number"
+    t.string "vehicle_type"
+    t.string "status"
+    t.string "document_approval_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_delivery_people_on_account_id"
+  end
+
   create_table "menu_items", force: :cascade do |t|
     t.integer "restaurant_id", null: false
     t.string "category"
@@ -67,6 +90,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_174220) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_menu_items_on_restaurant_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "menu_item_id", null: false
+    t.integer "quantity"
+    t.text "special_instructions"
+    t.decimal "price_at_order_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_item_id"], name: "index_order_items_on_menu_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -116,7 +151,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_174220) do
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
   add_foreign_key "addresses", "accounts"
+  add_foreign_key "deliveries", "delivery_people"
+  add_foreign_key "deliveries", "orders"
+  add_foreign_key "delivery_people", "accounts"
   add_foreign_key "menu_items", "restaurants"
+  add_foreign_key "order_items", "menu_items"
+  add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "accounts"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "restaurants"

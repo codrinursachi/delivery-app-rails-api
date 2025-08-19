@@ -52,7 +52,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def api_v1_menu_item_params
-        params.expect(api_v1_menu_item: %i[restaurant_id category name description price is_available])
+        params.expect(menu_item: %i[restaurant_id category name description price is_available])
       end
     end
   end
