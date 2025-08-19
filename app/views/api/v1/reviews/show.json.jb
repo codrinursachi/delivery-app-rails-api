@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+{
+  id: @api_v1_review.id,
+  account_id: @api_v1_review.account_id,
+  restaurant_id: @api_v1_review.restaurant_id,
+  order_id: @api_v1_review.order_id,
+  rating: @api_v1_review.rating,
+  comment: @api_v1_review.comment,
+  created_at: @api_v1_review.created_at,
+  updated_at: @api_v1_review.updated_at
+}

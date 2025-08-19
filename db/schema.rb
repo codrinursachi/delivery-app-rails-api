@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_19_070546) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_19_072306) do
   create_table "account_jwt_refresh_keys", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "key", null: false
@@ -146,6 +146,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_070546) do
     t.index ["account_id"], name: "index_restaurants_on_account_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "restaurant_id", null: false
+    t.integer "order_id", null: false
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_reviews_on_account_id"
+    t.index ["order_id"], name: "index_reviews_on_order_id"
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
+  end
+
   add_foreign_key "account_jwt_refresh_keys", "accounts"
   add_foreign_key "account_login_change_keys", "accounts", column: "id"
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
@@ -162,4 +175,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_070546) do
   add_foreign_key "orders", "restaurants"
   add_foreign_key "restaurant_addresses", "restaurants"
   add_foreign_key "restaurants", "accounts"
+  add_foreign_key "reviews", "accounts"
+  add_foreign_key "reviews", "orders"
+  add_foreign_key "reviews", "restaurants"
 end
